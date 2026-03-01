@@ -35,4 +35,12 @@ public class QuestionService {
         return questionMapper.toDtoList(questionRepository.findAll());
     }
 
+    //find question by id
+    public QuestionDTO getQuestionById(Long id){
+        Question question = questionRepository.findById(id)
+                .orElseThrow(()-> new QuestionNotFoundException(id));
+        return questionMapper.toDto(question);
+    }
+
+
 }
