@@ -36,10 +36,15 @@ public class QuestionService {
     }
 
     //find question by id
-    public QuestionDTO getQuestionById(Long id){
+    public QuestionDTO findQuestionById(Long id){
         Question question = questionRepository.findById(id)
                 .orElseThrow(()-> new QuestionNotFoundException(id));
         return questionMapper.toDto(question);
+    }
+
+    //find question by category
+    public List<QuestionDTO> findQuestionByCategory(String category){
+        return questionMapper.toDtoList(questionRepository.findByCategory(category));
     }
 
 
